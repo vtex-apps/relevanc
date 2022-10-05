@@ -1,6 +1,6 @@
 {
   "vendor": "vtex",
-  "name": "is-api-middleware-resolver",
+  "name": "is-relevanc-api-middleware-resolver",
   "version": "0.0.1",
   "title": "Intelligent Search API middleware resolver",
   "description": "Implementation of the GraphQL schema for the intelligent search middleware.",
@@ -11,6 +11,14 @@
   "dependencies": {
     "vtex.is-api-middleware-graphql": "0.x"
   },
-  "policies": [],
+  "policies": [
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "exito.staging-ads.peps.relevanc.io",
+        "path": "/sponsored-offers*"
+      }
+    }
+  ],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
