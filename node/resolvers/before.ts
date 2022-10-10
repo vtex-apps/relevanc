@@ -1,62 +1,50 @@
-export default async function before(
+export async function before(
   _: unknown,
   args: SearchParams,
   ctx: Context
 ): Promise<SearchParams> {
   const {
-    clients: { relevanC },
+    clients: { relevanC, apps },
+    vtex: { logger },
   } = ctx
-  // This is just an example. Change the implementation of this function however you like :)
-  console.log(args.query)
-  const searchQuery = args.query
-  const sponsoredProducts = await relevanC.getOffers(
-    `${searchQuery}&adSpaceId=PC_LR_PLR`
+
+  const searchQuery = args.query as string
+  const { production, maxOffersToDisplay } = await apps.getAppSettings(
+    process.env.VTEX_APP_ID as string
   )
-  console.log(sponsoredProducts)
 
-  if (sponsoredProducts.offers.length) {
-    console.log('hola cesarin')
-    const myDynamicRules: DynamicRule[] = []
-    for (const spProduct of sponsoredProducts.offers) {
-      myDynamicRules.push({
-        action: 'promote',
-        type: 'id',
-        value: spProduct.productId,
-      })
+  try {
+    const test = await relevanC.getSponsoredOffers(production, {
+      sourcePageNumber: 0,
+      keyOrigin: searchQuery,
+      adSpaceId: 'PC_LR_PLR',
+    })
+
+    const { offers } = test
+
+    if (!offers.length) {
+      return args
     }
-    console.log(myDynamicRules)
 
-    return { ...args, dynamicRules: myDynamicRules }
+    const dynamicRules = offers.reduce((rules: DynamicRule[], offer, index) => {
+      if (index < maxOffersToDisplay) {
+        rules.push({
+          action: 'promote',
+          type: 'id',
+          value: offer.productId,
+        })
+      }
+
+      return rules
+    }, [])
+
+    return { ...args, dynamicRules }
+  } catch (error) {
+    logger.error({
+      message: error.message ?? 'Something went wrong',
+      data: error,
+    })
+
+    return args
   }
-  const customRules: DynamicRule[] = [
-    {
-      action: 'add',
-      type: 'id',
-      value: '1253',
-    },
-    {
-      action: 'promote',
-      type: 'id',
-      value: '1253',
-    },
-    {
-      action: 'remove',
-      type: 'id',
-      value: '1336358',
-    },
-
-    // {
-    //   action: 'promote',
-    //   type: 'id',
-    //   value: '857952',
-    // },
-    // {
-    //   action: 'promote',
-    //   type: 'id',
-    //   value: '308625',
-    // },
-  ]
-  console.log(customRules)
-
-  return { ...args, dynamicRules: customRules }
 }

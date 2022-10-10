@@ -1,6 +1,6 @@
 {
   "vendor": "vtex",
-  "name": "is-relevanc-api-middleware-resolver",
+  "name": "relevanc-is-api-middleware-resolver",
   "version": "0.0.1",
   "title": "Intelligent Search API middleware resolver",
   "description": "Implementation of the GraphQL schema for the intelligent search middleware.",
@@ -15,10 +15,28 @@
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "exito.staging-ads.peps.relevanc.io",
-        "path": "/sponsored-offers*"
+        "host": "*",
+        "path": "*.peps.relevanc.io/sponsored-offers"
       }
     }
   ],
+  "settingsSchema": {
+    "title": "RelevanC search resolver middleware",
+    "type": "object",
+    "properties": {
+      "maxOffersToDisplay": {
+        "title": "Max number of offers",
+        "type": "number",
+        "description": "Max number of sponsored offers to display on the search results.",
+        "default": 4
+      },
+      "production": {
+        "title": "Production",
+        "type": "boolean",
+        "description": "Toggle between development and production environment.",
+        "default": false
+      }
+    }
+  },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
