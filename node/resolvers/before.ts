@@ -1,3 +1,5 @@
+import { ACTION, DESKTOP } from '../contants'
+
 export async function before(
   _: unknown,
   args: SearchParams,
@@ -9,28 +11,36 @@ export async function before(
   } = ctx
 
   const searchQuery = args.query as string
-  const { production, maxOffersToDisplay } = await apps.getAppSettings(
+  const settings: AppSettings = await apps.getAppSettings(
     process.env.VTEX_APP_ID as string
   )
 
-  try {
-    const test = await relevanC.getSponsoredOffers(production, {
-      sourcePageNumber: 0,
-      keyOrigin: searchQuery,
-      adSpaceId: 'PC_LR_PLR',
-    })
+  if (!Object.keys(settings).length) {
+    throw new Error('Settings not found')
+  }
 
-    const { offers } = test
+  const { adServerName, production, boostType, maxOffersToDisplay } = settings
+
+  try {
+    const { offers } = await relevanC.getSponsoredOffers(
+      production,
+      adServerName,
+      {
+        sourcePageNumber: 0,
+        keyOrigin: searchQuery,
+        adSpaceId: DESKTOP,
+      }
+    )
 
     if (!offers.length) {
-      return args
+      throw new Error('No offers returned from RelevanC')
     }
 
     const dynamicRules = offers.reduce((rules: DynamicRule[], offer, index) => {
       if (index < maxOffersToDisplay) {
         rules.push({
-          action: 'promote',
-          type: 'id',
+          action: ACTION.PROMOTE,
+          type: boostType,
           value: offer.productId,
         })
       }
@@ -42,7 +52,6 @@ export async function before(
   } catch (error) {
     logger.error({
       message: error.message ?? 'Something went wrong',
-      data: error,
     })
 
     return args

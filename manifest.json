@@ -24,6 +24,19 @@
     "title": "RelevanC search resolver middleware",
     "type": "object",
     "properties": {
+      "adServerName": {
+        "title": "RelevanC AdServer name",
+        "type": "string",
+        "description": "Name of the RelevanC AdServer (without the \"ads.peps.relevanc.io\")",
+        "default": "relevanc"
+      },
+      "boostType": {
+        "title": "Product property",
+        "type": "string",
+        "default": "skuId",
+        "enum": ["skuId"],
+        "enumNames": ["SKU ID"]
+      },
       "maxOffersToDisplay": {
         "title": "Max number of offers",
         "type": "number",

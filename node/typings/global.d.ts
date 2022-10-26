@@ -53,4 +53,11 @@ declare global {
     dynamicRules?: DynamicRule[]
     searchState?: string
   }
+
+  type AppSettings = {
+    adServerName: string
+    boostType: BoostType
+    maxOffersToDisplay: number
+    production: boolean
+  }
 }
