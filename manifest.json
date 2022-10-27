@@ -43,6 +43,12 @@
         "description": "Max number of sponsored offers to display on the search results.",
         "default": 4
       },
+      "addAllProducts": {
+        "title": "Add all products",
+        "type": "boolean",
+        "description": "By default, only products that are part of the search results are promoted.\n Check to add all products returned by the AdServer.",
+        "default": false
+      },
       "production": {
         "title": "Production",
         "type": "boolean",

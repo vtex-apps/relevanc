@@ -19,7 +19,13 @@ export async function before(
     throw new Error('Settings not found')
   }
 
-  const { adServerName, production, boostType, maxOffersToDisplay } = settings
+  const {
+    adServerName,
+    boostType,
+    maxOffersToDisplay,
+    addAllProducts,
+    production,
+  } = settings
 
   try {
     const { offers } = await relevanC.getSponsoredOffers(
@@ -39,7 +45,7 @@ export async function before(
     const dynamicRules = offers.reduce((rules: DynamicRule[], offer, index) => {
       if (index < maxOffersToDisplay) {
         rules.push({
-          action: ACTION.PROMOTE,
+          action: addAllProducts ? ACTION.ADD : ACTION.PROMOTE,
           type: boostType,
           value: offer.productId,
         })
