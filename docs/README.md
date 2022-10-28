@@ -10,14 +10,16 @@ RelevanC is an ad-tech SaaS provider based in Paris, France. It markets a custom
 
 Using VTEX Intelligent Search Middleware feature, this integration connects to RelevanC AdServer to get Sponsored Products to promote them in the search results page when a user makes a query.
 
-## Integration Settings
+## Integration Setup
 
-You can set up the behaviour for the integration using the following settings:
+_Note: You must already have a RelevanC account set up and ready_
 
-| Property           | Display Name           | Description                                                                                                                                         |
-| ------------------ | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| adServerName       | RelevanC AdServer name | This is the name of RelevanC's AdServer (without `ads.peps.relevanc.io`)                                                                            |
-| boostType          | Product property       | Product property to use to add/promote the products returned from the AdServer                                                                      |
-| maxOffersToDisplay | Max number of offers   | Maximum number of products to be added to the search results                                                                                        |
-| addAllProducts     | Add all products       | By default, only products that are part of the search results are promoted. Check to add all products returned by the AdServer to the search result |
-| production         | Production             | Toggle between development and production environment                                                                                               |
+After the app is installed on your VTEX account you can set up the behaviour for the integration using the following settings:
+
+| Property name                                      | Description                                                                                                                                         |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RelevanC AdServer name <br /> (`adServerName`)     | This is the name of RelevanC's AdServer (without `ads.peps.relevanc.io`)                                                                            |
+| Product property <br /> (`boostType`)              | Product property to use to add/promote the products returned from the AdServer                                                                      |
+| Max number of offers <br /> (`maxOffersToDisplay`) | Maximum number of products to be added to the search results                                                                                        |
+| Add all products <br />(`addAllProducts`)          | By default, only products that are part of the search results are promoted. Check to add all products returned by the AdServer to the search result |
+| Production <br /> (`production`)                   | Toggle between development and production environment                                                                                               |
