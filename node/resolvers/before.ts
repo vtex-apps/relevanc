@@ -10,24 +10,29 @@ export async function before(
     vtex: { logger },
   } = ctx
 
-  const searchQuery = args.query as string
-  const settings: AppSettings = await apps.getAppSettings(
-    process.env.VTEX_APP_ID as string
-  )
-
-  if (!Object.keys(settings).length) {
-    throw new Error('Settings not found')
-  }
-
-  const {
-    adServerName,
-    boostType,
-    maxOffersToDisplay,
-    addAllProducts,
-    production,
-  } = settings
-
   try {
+    const searchQuery = args.query
+
+    if (!searchQuery) {
+      throw new Error('Query was undefined')
+    }
+
+    const settings: AppSettings = await apps.getAppSettings(
+      process.env.VTEX_APP_ID as string
+    )
+
+    if (!Object.keys(settings).length) {
+      throw new Error('Settings not found')
+    }
+
+    const {
+      adServerName,
+      boostType,
+      maxOffersToDisplay,
+      addAllProducts,
+      production,
+    } = settings
+
     const { offers } = await relevanC.getSponsoredOffers(
       production,
       adServerName,
@@ -60,6 +65,6 @@ export async function before(
       message: error.message ?? 'Something went wrong',
     })
 
-    return args
+    return error
   }
 }
