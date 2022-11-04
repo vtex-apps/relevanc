@@ -1,21 +1,32 @@
-import type { InstanceOptions, IOContext} from '@vtex/api'
-import { ExternalClient } from '@vtex/api'
+import { InstanceOptions, IOContext, ExternalClient } from '@vtex/api'
+
+const BASE_URL = (name: string) => ({
+  STAGING: `http://${name}.staging-ads.peps.relevanc.io`,
+  PRODUCTION: `http://${name}.ads.peps.relevanc.io`,
+})
 
 export default class RelevanC extends ExternalClient {
   constructor(context: IOContext, options?: InstanceOptions) {
-    super(
-      'http://exito.staging-ads.peps.relevanc.io/sponsored-offers?sourcePageNumber=0&keyOrigin=',
-      context,
-      options
-    )
+    super('https://ads/peps.relevanc.io', context, options)
   }
 
-  public async getOffers(params: string): Promise<any> {
-    return this.http.get(params.toString(), {
+  public async getSponsoredOffers(
+    production: boolean,
+    serverName: string,
+    params: SponsoredProductsPayload
+  ): Promise<SponsoredProductsResponse> {
+    const URL = production
+      ? BASE_URL(serverName).PRODUCTION
+      : BASE_URL(serverName).STAGING
+
+    return this.http.get(`${URL}/sponsored-offers`, {
       headers: {
         'x-vtex-use-https': 'true',
       },
-      metric: 'status-get-raw',
+      params: {
+        ...params,
+      },
+      metric: 'relevanc-get-offers',
     })
   }
 }

@@ -1,62 +1,74 @@
-export default async function before(
+import { ACTION, DESKTOP } from '../contants'
+
+export async function before(
   _: unknown,
   args: SearchParams,
   ctx: Context
 ): Promise<SearchParams> {
   const {
-    clients: { relevanC },
+    clients: { relevanC, apps },
+    vtex: { logger },
   } = ctx
-  // This is just an example. Change the implementation of this function however you like :)
-  console.log(args.query)
-  const searchQuery = args.query
-  const sponsoredProducts = await relevanC.getOffers(
-    `${searchQuery}&adSpaceId=PC_LR_PLR`
-  )
-  console.log(sponsoredProducts)
 
-  if (sponsoredProducts.offers.length) {
-    console.log('hola cesarin')
-    const myDynamicRules: DynamicRule[] = []
-    for (const spProduct of sponsoredProducts.offers) {
-      myDynamicRules.push({
-        action: 'promote',
-        type: 'id',
-        value: spProduct.productId,
+  const searchQuery = args.query
+
+  if (!searchQuery) {
+    const message = 'Query was undefined'
+
+    logger.error({
+      message,
+    })
+
+    throw new Error(message)
+  }
+
+  const settings: AppSettings = await apps.getAppSettings(
+    process.env.VTEX_APP_ID as string
+  )
+
+  if (!Object.keys(settings).length) {
+    const message = 'Settings for RelevanC Integration not found'
+
+    logger.error({
+      message,
+    })
+
+    throw new Error(message)
+  }
+
+  const {
+    adServerName,
+    boostType,
+    maxOffersToDisplay,
+    addAllProducts,
+    production,
+  } = settings
+
+  const { offers } = await relevanC.getSponsoredOffers(
+    production,
+    adServerName,
+    {
+      sourcePageNumber: 0,
+      keyOrigin: searchQuery,
+      adSpaceId: DESKTOP,
+    }
+  )
+
+  if (!offers.length) {
+    return args
+  }
+
+  const dynamicRules = offers.reduce((rules: DynamicRule[], offer, index) => {
+    if (index < maxOffersToDisplay) {
+      rules.push({
+        action: addAllProducts ? ACTION.ADD : ACTION.PROMOTE,
+        type: boostType,
+        value: offer.productId,
       })
     }
-    console.log(myDynamicRules)
 
-    return { ...args, dynamicRules: myDynamicRules }
-  }
-  const customRules: DynamicRule[] = [
-    {
-      action: 'add',
-      type: 'id',
-      value: '1253',
-    },
-    {
-      action: 'promote',
-      type: 'id',
-      value: '1253',
-    },
-    {
-      action: 'remove',
-      type: 'id',
-      value: '1336358',
-    },
+    return rules
+  }, [])
 
-    // {
-    //   action: 'promote',
-    //   type: 'id',
-    //   value: '857952',
-    // },
-    // {
-    //   action: 'promote',
-    //   type: 'id',
-    //   value: '308625',
-    // },
-  ]
-  console.log(customRules)
-
-  return { ...args, dynamicRules: customRules }
+  return { ...args, dynamicRules }
 }

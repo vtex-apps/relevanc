@@ -2994,6 +2994,10 @@ vary@^1.1.2:
   version "0.0.0"
   resolved "http://hiago--storecomponents.myvtex.com/_v/public/typings/v1/vtex.is-api-middleware-graphql@0.0.2/public#5640d9c15d5d90705182b72573e8d85829d975f6"
 
+"vtex.relevanc-is-api-middleware-resolver@https://relevanc--exitocol.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc-is-api-middleware-resolver@0.0.1+build1666861070/public/_types/react":
+  version "0.0.0"
+  resolved "https://relevanc--exitocol.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc-is-api-middleware-resolver@0.0.1+build1666861070/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+
 which-pm-runs@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/which-pm-runs/-/which-pm-runs-1.0.0.tgz#670b3afbc552e0b55df6b7780ca74615f23ad1cb"

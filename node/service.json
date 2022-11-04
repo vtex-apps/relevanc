@@ -1,6 +1,6 @@
 {
-    "stack": "nodejs",
-    "memory": 256,
-    "minReplicas": 3,
-    "workers": 1
+  "stack": "nodejs",
+  "memory": 512,
+  "minReplicas": 3,
+  "workers": 1
 }
