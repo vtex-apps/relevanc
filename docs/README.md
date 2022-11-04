@@ -1,16 +1,16 @@
 # RelevanC Search API Middleware Resolver
 
-## What is RelevanC
+### What is RelevanC
 
 RelevanC is an ad-tech SaaS provider based in Paris, France. It markets a customised retail media solution under a white label to retailers and advertisers worldwide. With Sponsored Products for marketplaces, it combines truly relevant ads and maximum reach using advanced AI for the best of both worlds.
 
-## RelevanC integration
+### RelevanC integration
 
-### Search results page
+#### Search results page
 
 Using VTEX Intelligent Search Middleware feature, this integration connects to RelevanC AdServer to get Sponsored Products to promote them in the search results page when a user makes a query.
 
-## Integration Setup
+### Integration Setup
 
 _Note: You must already have a RelevanC account set up and ready_
 
