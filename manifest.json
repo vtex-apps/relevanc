@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "relevanc-is-api-middleware-resolver",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "title": "Intelligent Search API middleware resolver",
   "description": "Implementation of the GraphQL schema for the intelligent search middleware.",
   "builders": {
@@ -34,8 +34,12 @@
         "title": "Product property",
         "type": "string",
         "default": "skuId",
-        "enum": ["skuId"],
-        "enumNames": ["SKU ID"]
+        "enum": [
+          "skuId"
+        ],
+        "enumNames": [
+          "SKU ID"
+        ]
       },
       "maxOffersToDisplay": {
         "title": "Max number of offers",
