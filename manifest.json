@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "relevanc-is-api-middleware-resolver",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "title": "Intelligent Search API middleware resolver",
   "description": "Implementation of the GraphQL schema for the intelligent search middleware.",
   "builders": {
