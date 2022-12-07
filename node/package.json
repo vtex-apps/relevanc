@@ -3,6 +3,7 @@
   "private": true,
   "license": "UNLICENSED",
   "dependencies": {
+    "@vtex/clients": "^2.19.5",
     "graphql": "^14.5.8",
     "graphql-tools": "^4.0.6",
     "vtex.is-api-middleware-graphql": "http://hiago--storecomponents.myvtex.com/_v/public/typings/v1/vtex.is-api-middleware-graphql@0.0.2/public"
@@ -19,7 +20,7 @@
     "prettier": "^1.19.1",
     "typescript": "3.9.7",
     "vtex.is-api-middleware-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.is-api-middleware-graphql@0.0.2/public/@types/vtex.is-api-middleware-graphql",
-    "vtex.relevanc-is-api-middleware-resolver": "https://relevanc--exitocol.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc-is-api-middleware-resolver@0.0.1+build1666861070/public/_types/react"
+    "vtex.relevanc": "https://relevanc--exitocol.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc@0.0.3+build1670258888/public/_types/react"
   },
   "version": "0.0.3"
 }
