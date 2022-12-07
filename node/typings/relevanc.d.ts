@@ -17,7 +17,7 @@ type SponsoredProductsPayload =
   | KeyIdSponsoredProductsPayload
   | KeyOriginSponsoredProductsPayload
 
-type Offer = {
+type SponsoredOffer = {
   algoSelectionType:
     | 'NOTSELECTED'
     | 'EXPLORED'
@@ -33,5 +33,13 @@ type Offer = {
 
 type SponsoredProductsResponse = {
   nbResults: number
-  offers: Offer[]
+  tagName: string
+  tag: string
+  offers: SponsoredOffer[]
+}
+
+interface HandlerArgs {
+  ctx: Context
+  settings: AppSettings
+  searchParams: SearchParams
 }
