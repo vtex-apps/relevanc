@@ -1,74 +1,70 @@
-import { ACTION, DESKTOP } from '../contants'
+import { CATEGORY_PAGE, SEARCH_PAGE } from '../contants'
+import {
+  errorHandler,
+  getSettings,
+  validateArgs,
+  getSearchPageOffers,
+  getCategoryPageOffers,
+} from '../utils/handlers'
+import { dynamicRulesMapper } from '../utils'
 
 export async function before(
   _: unknown,
   args: SearchParams,
   ctx: Context
 ): Promise<SearchParams> {
-  const {
-    clients: { relevanC, apps },
-    vtex: { logger },
-  } = ctx
-
-  const searchQuery = args.query
-
-  if (!searchQuery) {
-    const message = 'Query was undefined'
-
-    logger.error({
-      message,
-    })
-
-    throw new Error(message)
+  if (!validateArgs(args)) {
+    return errorHandler('Invalid search params', ctx)
   }
 
-  const settings: AppSettings = await apps.getAppSettings(
-    process.env.VTEX_APP_ID as string
-  )
+  const settings = await getSettings(ctx)
 
-  if (!Object.keys(settings).length) {
-    const message = 'Settings for RelevanC Integration not found'
-
-    logger.error({
-      message,
-    })
-
-    throw new Error(message)
+  if (!settings) {
+    return errorHandler('Settings not found', ctx)
   }
 
-  const {
-    adServerName,
-    boostType,
-    maxOffersToDisplay,
-    addAllProducts,
-    production,
-  } = settings
+  /**
+   * The `query` param is only present for the Search Results page.
+   * The selected facets can be present in both pages (Search Results and Categories)
+   */
+  const type = !args.query ? CATEGORY_PAGE : SEARCH_PAGE
+  let offers
 
-  const { offers } = await relevanC.getSponsoredOffers(
-    production,
-    adServerName,
-    {
-      sourcePageNumber: 0,
-      keyOrigin: searchQuery,
-      adSpaceId: DESKTOP,
-    }
-  )
-
-  if (!offers.length) {
-    return args
-  }
-
-  const dynamicRules = offers.reduce((rules: DynamicRule[], offer, index) => {
-    if (index < maxOffersToDisplay) {
-      rules.push({
-        action: addAllProducts ? ACTION.ADD : ACTION.PROMOTE,
-        type: boostType,
-        value: offer.productId,
+  switch (type) {
+    case SEARCH_PAGE: {
+      offers = await getSearchPageOffers({
+        ctx,
+        settings,
+        searchParams: args,
       })
+
+      if (!offers) {
+        return errorHandler('AdServer request failed', ctx)
+      }
+
+      break
     }
 
-    return rules
-  }, [])
+    case CATEGORY_PAGE: {
+      offers = await getCategoryPageOffers({
+        ctx,
+        settings,
+        searchParams: args,
+      })
+
+      if (!offers) {
+        return errorHandler('AdServer request failed', ctx)
+      }
+
+      break
+    }
+
+    default: {
+      return args
+    }
+  }
+
+  const dynamicRules = offers.map(offer => dynamicRulesMapper(offer, settings))
 
   return { ...args, dynamicRules }
 }
