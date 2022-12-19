@@ -8,13 +8,15 @@ export const getSearchPageOffers = async (args: HandlerArgs) => {
   } = args
 
   try {
-    const { offers } = await clients.relevanC.getSponsoredOffers(adServerName, {
+    const { offers } = await clients.relevanc.getSponsoredOffers(adServerName, {
       sourcePageNumber: page ? Number(page) : 0,
       keyOrigin: query as string,
       adSpaceId: DESKTOP,
     })
 
-    return offers.splice(maxOffersToDisplay)
+    offers.splice(maxOffersToDisplay)
+
+    return offers
   } catch (error) {
     return null
   }

@@ -8,6 +8,10 @@ import {
 } from '../utils/handlers'
 import { dynamicRulesMapper } from '../utils'
 
+// We use this object to store some information needed on the after resolver
+// eslint-disable-next-line import/no-mutable-exports
+export const offersMap = {} as SponsoredOffersMap
+
 export async function before(
   _: unknown,
   args: SearchParams,
@@ -28,7 +32,7 @@ export async function before(
    * The selected facets can be present in both pages (Search Results and Categories)
    */
   const type = !args.query ? CATEGORY_PAGE : SEARCH_PAGE
-  let offers
+  let offers: SponsoredOffer[] | null
 
   switch (type) {
     case SEARCH_PAGE: {
@@ -37,10 +41,6 @@ export async function before(
         settings,
         searchParams: args,
       })
-
-      if (!offers) {
-        return errorHandler('AdServer request failed', ctx)
-      }
 
       break
     }
@@ -52,10 +52,6 @@ export async function before(
         searchParams: args,
       })
 
-      if (!offers) {
-        return errorHandler('AdServer request failed', ctx)
-      }
-
       break
     }
 
@@ -64,7 +60,15 @@ export async function before(
     }
   }
 
-  const dynamicRules = offers.map(offer => dynamicRulesMapper(offer, settings))
+  if (!offers) {
+    return errorHandler('AdServer request failed', ctx)
+  }
+
+  const dynamicRules = offers.map(offer => {
+    offersMap[offer.offerId] = offer
+
+    return dynamicRulesMapper(offer, settings)
+  })
 
   return { ...args, dynamicRules }
 }

@@ -7,7 +7,7 @@ import RelevanC from './relevanc'
 const MEDIUM_TIMEOUT_MS = 2 * 1000
 
 export class Clients extends IOClients {
-  public get relevanC() {
+  public get relevanc() {
     return this.getOrSet('relevanc', RelevanC)
   }
 

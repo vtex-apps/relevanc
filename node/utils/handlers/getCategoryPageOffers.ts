@@ -26,14 +26,16 @@ export const getCategoryPageOffers = async (args: HandlerArgs) => {
       return null
     }
 
-    const { offers } = await clients.relevanC.getSponsoredOffers(adServerName, {
+    const { offers } = await clients.relevanc.getSponsoredOffers(adServerName, {
       sourcePageNumber: page ? Number(page) : 0,
       keyId: item.id,
       filterCategoryCodePath: item.path,
       adSpaceId: DESKTOP,
     })
 
-    return offers.splice(maxOffersToDisplay)
+    offers.splice(maxOffersToDisplay)
+
+    return offers
   } catch (error) {
     return null
   }

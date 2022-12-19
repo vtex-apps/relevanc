@@ -1,4 +1,4 @@
-import { Service, RecorderState, ParamsContext } from '@vtex/api'
+import { ParamsContext, RecorderState, Service } from '@vtex/api'
 import schema from 'vtex.is-api-middleware-graphql/graphql'
 
 import { Clients, clientsConfig } from './clients'

@@ -43,3 +43,7 @@ interface HandlerArgs {
   settings: AppSettings
   searchParams: SearchParams
 }
+
+interface SponsoredOffersMap {
+  [offerId: string]: SponsoredOffer
+}

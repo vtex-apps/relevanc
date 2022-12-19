@@ -7,7 +7,7 @@ import {
 
 export default class RelevanC extends ExternalClient {
   constructor(context: IOContext, options?: InstanceOptions) {
-    super('https://ads/peps.relevanc.io', context, options)
+    super('https://ads.peps.relevanc.io', context, options)
   }
 
   private getBaseUrl(serverName: string) {
