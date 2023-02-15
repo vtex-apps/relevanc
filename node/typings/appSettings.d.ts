@@ -3,5 +3,4 @@ type AppSettings = {
   boostType: BoostType
   maxOffersToDisplay: number
   addAllProducts: boolean
-  production: boolean
 }

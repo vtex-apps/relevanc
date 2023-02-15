@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { ServiceContext } from '@vtex/api'
 
 import { Clients } from '../clients/index'

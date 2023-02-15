@@ -21,6 +21,6 @@ interface CategoriesMapItem {
 }
 
 interface CategoriesMapRecord {
-  lastUpdated: number
+  lastUpdated: string
   categories: CategoriesMap
 }
