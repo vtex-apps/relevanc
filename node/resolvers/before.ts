@@ -1,16 +1,20 @@
-import { CATEGORY_PAGE, SEARCH_PAGE } from '../contants'
+import { PAGE_TYPE } from '../contants'
 import {
   errorHandler,
   getSettings,
   validateArgs,
   getSearchPageOffers,
   getCategoryPageOffers,
-} from '../utils/handlers'
+} from '../utils/resolvers'
 import { dynamicRulesMapper } from '../utils'
 
-// We use this object to store some information needed on the after resolver
+/**
+ * We use this object to store some information needed on the after resolver
+ * In the future, the Intelligent Search Team might develop the feature to pass
+ * information from the `before` to the `after` resolver.
+ */
 // eslint-disable-next-line import/no-mutable-exports
-export const offersMap = {} as SponsoredOffersMap
+export const offersMap = {} as Relevanc.SponsoredOffersMap
 
 export async function before(
   _: unknown,
@@ -29,13 +33,13 @@ export async function before(
 
   /**
    * The `query` param is only present for the Search Results page.
-   * The selected facets can be present in both pages (Search Results and Categories)
+   * The selectedFacets can be present in both pages (Search Results and Categories)
    */
-  const type = !args.query ? CATEGORY_PAGE : SEARCH_PAGE
-  let offers: SponsoredOffer[] | null
+  const type = !args.query ? PAGE_TYPE.CATEGORY : PAGE_TYPE.SEARCH
+  let offers: Relevanc.SponsoredOffer[] | null
 
   switch (type) {
-    case SEARCH_PAGE: {
+    case PAGE_TYPE.SEARCH: {
       offers = await getSearchPageOffers({
         ctx,
         settings,
@@ -45,7 +49,7 @@ export async function before(
       break
     }
 
-    case CATEGORY_PAGE: {
+    case PAGE_TYPE.CATEGORY: {
       offers = await getCategoryPageOffers({
         ctx,
         settings,
@@ -64,7 +68,9 @@ export async function before(
     return errorHandler('AdServer request failed', ctx)
   }
 
-  const dynamicRules = offers.map(offer => {
+  offersMap.boostType = settings.boostType
+
+  const dynamicRules = offers.map((offer) => {
     offersMap[offer.offerId] = offer
 
     return dynamicRulesMapper(offer, settings)

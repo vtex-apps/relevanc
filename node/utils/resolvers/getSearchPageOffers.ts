@@ -1,14 +1,16 @@
 import { DESKTOP } from '../../contants'
 
-export const getSearchPageOffers = async (args: HandlerArgs) => {
+export const getSearchPageOffers = async (args: Relevanc.HandlerArgs) => {
   const {
-    ctx: { clients },
+    ctx: {
+      clients: { relevanc },
+    },
     settings: { adServerName, maxOffersToDisplay },
     searchParams: { page, query },
   } = args
 
   try {
-    const { offers } = await clients.relevanc.getSponsoredOffers(adServerName, {
+    const { offers } = await relevanc.getSponsoredOffers(adServerName, {
       sourcePageNumber: page ? Number(page) : 0,
       keyOrigin: query as string,
       adSpaceId: DESKTOP,

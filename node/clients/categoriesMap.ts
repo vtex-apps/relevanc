@@ -1,4 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { InstanceOptions, IOContext, VBase } from '@vtex/api'
+
 import { BUCKET, CATEGORIES_MAP } from '../contants'
 
 export default class CategoriesMap extends VBase {

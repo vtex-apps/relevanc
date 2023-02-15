@@ -1,3 +1,4 @@
+import { addTrackingTag } from '../utils/resolvers'
 import { offersMap } from './before'
 
 export async function after(
@@ -5,20 +6,10 @@ export async function after(
   { args }: AfterArgs,
   __: Context
 ): Promise<ProductSearchResult> {
-  for (const product of args.searchResult.products) {
-    if (product.rule && product.rule.id.includes('dynamic')) {
-      const [skuId] = product.items
-        .map(item => item.itemId)
-        .filter(sku => offersMap[sku])
+  const { products } = args.searchResult
 
-      if (!skuId) {
-        continue
-      }
-
-      product.rule = {
-        id: `${skuId}-${offersMap[skuId].tag}`,
-      }
-    }
+  for (const product of products) {
+    addTrackingTag(offersMap, product)
   }
 
   return args.searchResult

@@ -1,4 +1,4 @@
-import { CATEGORIES_MAP } from '../contants'
+import { CustomError } from '../../utils'
 
 export async function getCategoriesMap(ctx: Context) {
   const {
@@ -6,7 +6,7 @@ export async function getCategoriesMap(ctx: Context) {
   } = ctx
 
   try {
-    const categoriesMap = await categories.get(CATEGORIES_MAP, true)
+    const categoriesMap = await categories.getCategoriesMap()
 
     if (!categoriesMap) {
       ctx.body = 'Categories map has not been generated'
@@ -16,6 +16,10 @@ export async function getCategoriesMap(ctx: Context) {
 
     ctx.body = categoriesMap
   } catch (err) {
-    throw new Error('Unable to fetch categories map')
+    throw new CustomError({
+      message: err.message,
+      reason: 'Unable to fetch categories map',
+      status: 500,
+    })
   }
 }

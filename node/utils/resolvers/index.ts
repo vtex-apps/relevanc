@@ -1,3 +1,4 @@
+export * from './addTrackingTag'
 export * from './errorHandler'
 export * from './getCategoryPageOffers'
 export * from './getSearchPageOffers'

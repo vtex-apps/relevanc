@@ -1,22 +1,25 @@
-import { CATEGORIES_MAP } from '../contants'
 import { createCategoriesMap } from '../utils'
 
 export const updateCategoriesMapService = async (ctx: Context) => {
-  const { clients } = ctx
+  const {
+    clients: { catalog, categories },
+    vtex: { logger },
+  } = ctx
 
   try {
-    const categoryTree = await clients.catalog.getCategoryTree()
-    const categories = createCategoriesMap(categoryTree)
+    const categoryTree = await catalog.getCategoryTree()
+    const categoriesMap = createCategoriesMap(categoryTree)
 
-    const categoriesMap: CategoriesMapRecord = {
-      lastUpdated: Date.now(),
-      categories,
+    const categoriesMapRecord: CategoriesMapRecord = {
+      lastUpdated: Date(),
+      categories: categoriesMap,
     }
 
-    await clients.categories.save(CATEGORIES_MAP, categoriesMap)
-
-    return categoriesMap
-  } catch {
-    return null
+    categories.updateCategoriesMap(categoriesMapRecord)
+  } catch (error) {
+    logger.error({
+      reason: error.message ?? 'Something went wrong',
+      data: error.response?.data,
+    })
   }
 }

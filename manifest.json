@@ -35,9 +35,9 @@
       "boostType": {
         "title": "Product property",
         "type": "string",
-        "default": "skuId",
-        "enum": ["skuId"],
-        "enumNames": ["SKU ID"]
+        "default": "productId",
+        "enum": ["productId", "skuId"],
+        "enumNames": ["Product ID", "SKU ID"]
       },
       "maxOffersToDisplay": {
         "title": "Max number of offers",

@@ -1,14 +1,18 @@
-export const CATEGORY_PAGE = 'category-page'
-export const SEARCH_PAGE = 'search-page'
+export const PAGE_TYPE = {
+  CATEGORY: 'category-page',
+  SEARCH: 'search-page',
+} as const
+
 export const CATEGORIES_MAP = 'categories-map'
-export const CATEGORY_BASE_URL = 'https://portal.vtexcommercestable.com.br/'
+export const ACCOUNT_BASE_URL = 'https://portal.vtexcommercestable.com.br/'
 export const BUCKET = 'relevanc'
 
 export const DESKTOP = 'PC_LR_PLR'
 export const MOBILE = 'MOB_LR_PLR'
-export enum ACTION {
-  ADD = 'add',
-  REMOVE = 'remove',
-  PROMOTE = 'promote',
-  DEMOTE = 'demote',
-}
+
+export const ACTION = {
+  ADD: 'add',
+  REMOVE: 'remove',
+  PROMOTE: 'promote',
+  DEMOTE: 'demote',
+} as const

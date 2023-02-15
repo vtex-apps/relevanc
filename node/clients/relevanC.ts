@@ -1,5 +1,10 @@
-import type { InstanceOptions, IOContext } from '@vtex/api'
-import { ExternalClient, PRODUCTION } from '@vtex/api'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import {
+  InstanceOptions,
+  IOContext,
+  ExternalClient,
+  PRODUCTION,
+} from '@vtex/api'
 
 export default class Relevanc extends ExternalClient {
   constructor(context: IOContext, options?: InstanceOptions) {

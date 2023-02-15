@@ -1,7 +1,7 @@
 import { ACTION } from '../contants'
 
 export const dynamicRulesMapper = (
-  offer: SponsoredOffer,
+  offer: Relevanc.SponsoredOffer,
   { addAllProducts, boostType }: AppSettings
 ): DynamicRule => ({
   action: addAllProducts ? ACTION.ADD : ACTION.PROMOTE,

@@ -1,14 +1,15 @@
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { ClientsConfig, IOClients } from '@vtex/api'
 
 import Catalog from './catalog'
-import Categories from './categories'
-import RelevanC from './relevanc'
+import CategoriesMap from './categoriesMap'
+import Relevanc from './relevanc'
 
 const MEDIUM_TIMEOUT_MS = 2 * 1000
 
 export class Clients extends IOClients {
   public get relevanc() {
-    return this.getOrSet('relevanc', RelevanC)
+    return this.getOrSet('relevanc', Relevanc)
   }
 
   public get catalog() {
@@ -16,7 +17,7 @@ export class Clients extends IOClients {
   }
 
   public get categories() {
-    return this.getOrSet('categories', Categories)
+    return this.getOrSet('categories', CategoriesMap)
   }
 }
 
