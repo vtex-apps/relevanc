@@ -20,7 +20,7 @@
     "prettier": "^1.19.1",
     "typescript": "3.9.7",
     "vtex.is-api-middleware-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.is-api-middleware-graphql@0.1.0-beta.4/public/@types/vtex.is-api-middleware-graphql",
-    "vtex.relevanc": "https://relevancsponsor--exitocol.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc@0.0.4+build1676299623/public/_types/react"
+    "vtex.relevanc": "https://relevancsponsor--exito.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc@0.0.4+build1676468016/public/_types/react"
   },
   "resolutions": {
     "@types/express-serve-static-core": "4.17.28"
