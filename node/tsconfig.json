@@ -1,24 +1,11 @@
 {
+  "extends": "@vtex/tsconfig",
   "compilerOptions": {
-    "types": ["node"],
-    "target": "es2019",
-    "module": "commonjs",
-    "sourceMap": false,
-    "allowJs": true,
-    "noImplicitThis": true,
+    "noEmitOnError": false,
+    "lib": ["dom"],
+    "module": "esnext",
     "moduleResolution": "node",
-    "skipLibCheck": true,
-    "alwaysStrict": true,
-    "esModuleInterop": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true
+    "target": "es2019"
   },
-  "typeAcquisition": {
-    "enable": false
-  },
-  "include": ["./typings/*.d.ts", "./**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["./typings/*.d.ts", "./**/*.tsx", "./**/*.ts"]
 }
