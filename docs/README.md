@@ -25,23 +25,26 @@ The integration makes use of a categories map that is generated from the account
 You can check and generate/update this categories map using the following endpoint[^2].
 
 - Check the categories map
+
 ```
 GET https://app.io.vtex.com/vtex.relevanc/v0/{{account}}/{{workspace}}/_v/relevanc/categories-map
 ```
 
 - Generate/update the categories map:
+
 ```
 PUT https://app.io.vtex.com/vtex.relevanc/v0/{{account}}/{{workspace}}/_v/relevanc/categories-map
 ```
 
 #### Integration settings
+
 You can customize the behaviour for the integration using the following settings:
 
-| Property name                                      | Description                                                                                                                                         |
-| -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| RelevanC AdServer name <br /> (`adServerName`)     | This is the name of RelevanC's AdServer (without `ads.peps.relevanc.io`)                                                                            |
-| Product property <br /> (`boostType`)              | Product property to use to add/promote the products returned from the AdServer                                                                      |
-| Max number of offers <br /> (`maxOffersToDisplay`) | Maximum number of products to be added to the search results                                                                                        |
+| Property name                                      | Description                                                                                                                                             |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RelevanC AdServer name <br /> (`adServerName`)     | This is the name of RelevanC's AdServer (without `ads.peps.relevanc.io`)                                                                                |
+| Product property <br /> (`boostType`)              | Product property to use to add/promote the products returned from the AdServer                                                                          |
+| Max number of offers <br /> (`maxOffersToDisplay`) | Maximum number of products to be added to the search results                                                                                            |
 | Add all products <br />(`addAllProducts`)          | By default, only products that are part of the search results are promoted. Check to add all products returned by the AdServer to the search result[^3] |
 
 [^1]: Category pages that use collections or are custom are not supported.
