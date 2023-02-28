@@ -14,8 +14,8 @@
     "@vtex/api": "6.45.15",
     "@vtex/tsconfig": "^0.5.6",
     "typescript": "3.9.7",
-    "vtex.is-api-middleware-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.is-api-middleware-graphql@0.1.0-beta.4/public/@types/vtex.is-api-middleware-graphql",
-    "vtex.relevanc": "https://relevancsponsor--exito.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc@0.0.4+build1676472153/public/_types/react"
+    "vtex.is-api-middleware-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.is-api-middleware-graphql@0.1.0-beta.5/public/@types/vtex.is-api-middleware-graphql",
+    "vtex.relevanc": "https://relevancsponsor--exito.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc@1.0.0+build1677599571/public/_types/react"
   },
   "resolutions": {
     "@types/express-serve-static-core": "4.17.28"

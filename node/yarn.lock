@@ -1550,9 +1550,9 @@ vary@^1.1.2:
   version "0.0.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.is-api-middleware-graphql@0.1.0-beta.4/public#e9ee866ba053bd238e0d38aee74af19ad86badad"
 
-"vtex.relevanc@https://relevancsponsor--exito.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc@0.0.4+build1676472153/public/_types/react":
+"vtex.relevanc@https://relevancsponsor--exito.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc@1.0.0+build1677599571/public/_types/react":
   version "0.0.0"
-  resolved "https://relevancsponsor--exito.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc@0.0.4+build1676472153/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+  resolved "https://relevancsponsor--exito.myvtex.com/_v/private/typings/linked/v1/vtex.relevanc@1.0.0+build1677599571/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
 
 wrappy@1:
   version "1.0.2"

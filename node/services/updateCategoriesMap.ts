@@ -2,20 +2,20 @@ import { createCategoriesMap } from '../utils'
 
 export const updateCategoriesMapService = async (ctx: Context) => {
   const {
-    clients: { catalog, categories },
+    clients: { catalog, categoriesMap },
     vtex: { logger },
   } = ctx
 
   try {
     const categoryTree = await catalog.getCategoryTree()
-    const categoriesMap = createCategoriesMap(categoryTree)
+    const categories = createCategoriesMap(categoryTree)
 
     const categoriesMapRecord: CategoriesMapRecord = {
       lastUpdated: Date(),
-      categories: categoriesMap,
+      categories,
     }
 
-    categories.updateCategoriesMap(categoriesMapRecord)
+    categoriesMap.updateCategoriesMap(categoriesMapRecord)
   } catch (error) {
     logger.error({
       reason: error.message ?? 'Something went wrong',

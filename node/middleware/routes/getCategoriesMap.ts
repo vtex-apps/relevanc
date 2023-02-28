@@ -2,19 +2,19 @@ import { CustomError } from '../../utils'
 
 export async function getCategoriesMap(ctx: Context) {
   const {
-    clients: { categories },
+    clients: { categoriesMap },
   } = ctx
 
   try {
-    const categoriesMap = await categories.getCategoriesMap()
+    const categoriesMapRecord = await categoriesMap.getCategoriesMap()
 
-    if (!categoriesMap) {
+    if (!categoriesMapRecord) {
       ctx.body = 'Categories map has not been generated'
 
       return
     }
 
-    ctx.body = categoriesMap
+    ctx.body = categoriesMapRecord
   } catch (err) {
     throw new CustomError({
       message: err.message,
