@@ -10,7 +10,7 @@ export function addTrackingTag(
 
       if (offersMap[productId]) {
         product.rule = {
-          id: `${productId}-${offersMap[productId].tag}`,
+          id: `dynamic:${productId}-${offersMap[productId].tag}`,
         }
       }
 
@@ -18,15 +18,13 @@ export function addTrackingTag(
     }
 
     case 'skuId': {
-      if (product.rule?.id.includes('dynamic')) {
-        const [skuId] = product.items
-          .map((item) => item.itemId)
-          .filter((sku) => offersMap[sku])
+      const [skuId] = product.items
+        .map((item) => item.itemId)
+        .filter((sku) => offersMap[sku])
 
-        if (skuId) {
-          product.rule = {
-            id: `${skuId}-${offersMap[skuId].tag}`,
-          }
+      if (skuId) {
+        product.rule = {
+          id: `dynamic:${skuId}-${offersMap[skuId].tag}`,
         }
       }
 

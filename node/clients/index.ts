@@ -16,8 +16,8 @@ export class Clients extends IOClients {
     return this.getOrSet('catalog', Catalog)
   }
 
-  public get categories() {
-    return this.getOrSet('categories', CategoriesMap)
+  public get categoriesMap() {
+    return this.getOrSet('categoriesMap', CategoriesMap)
   }
 }
 

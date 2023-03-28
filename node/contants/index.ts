@@ -1,7 +1,7 @@
 export const PAGE_TYPE = {
   CATEGORY: 'category-page',
   SEARCH: 'search-page',
-} as const
+}
 
 export const CATEGORIES_MAP = 'categories-map'
 export const ACCOUNT_BASE_URL = 'https://portal.vtexcommercestable.com.br/'

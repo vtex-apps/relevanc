@@ -3,7 +3,7 @@ import { DESKTOP } from '../../contants'
 export const getCategoryPageOffers = async (args: Relevanc.HandlerArgs) => {
   const {
     ctx: {
-      clients: { categories, relevanc },
+      clients: { categoriesMap, relevanc },
       vtex: { logger },
     },
     settings: { adServerName, maxOffersToDisplay },
@@ -15,7 +15,7 @@ export const getCategoryPageOffers = async (args: Relevanc.HandlerArgs) => {
   }
 
   try {
-    const categoriesMapRecord = await categories.getCategoriesMap()
+    const categoriesMapRecord = await categoriesMap.getCategoriesMap()
 
     if (!categoriesMapRecord) {
       throw new Error('Unable to get category page offers')
