@@ -15,4 +15,6 @@ export default class OffersMapClient extends VBase {
 
   public updateOffersMap = (data: Relevanc.SponsoredOffersMap) =>
     this.saveJSON(BUCKET, OFFERS_MAP, data)
+
+  public clearOffersMap = () => this.saveJSON(BUCKET, OFFERS_MAP, null)
 }

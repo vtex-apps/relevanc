@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.2] - 2023-04-21
+
+- Implement VBase for the `offersMap` used in the resolvers.
+
 ## [1.0.1] - 2023-03-28
 
 ## [1.0.0] - 2023-02-15

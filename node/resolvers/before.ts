@@ -8,14 +8,6 @@ import {
 } from '../utils/resolvers'
 import { dynamicRulesMapper } from '../utils'
 
-/**
- * We use this object to store some information needed on the after resolver
- * In the future, the Intelligent Search Team might develop the feature to pass
- * information from the `before` to the `after` resolver.
- */
-// eslint-disable-next-line import/no-mutable-exports
-export const offersMap = {} as Relevanc.SponsoredOffersMap
-
 export async function before(
   _: unknown,
   args: SearchParams,
@@ -68,6 +60,8 @@ export async function before(
     return errorHandler('AdServer request failed', ctx)
   }
 
+  const offersMap = {} as Relevanc.SponsoredOffersMap
+
   offersMap.boostType = settings.boostType
 
   const dynamicRules = offers.map((offer) => {
@@ -75,6 +69,8 @@ export async function before(
 
     return dynamicRulesMapper(offer, settings)
   })
+
+  await ctx.clients.offersMap.updateOffersMap(offersMap)
 
   return { ...args, dynamicRules }
 }
