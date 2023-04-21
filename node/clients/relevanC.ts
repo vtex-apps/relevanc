@@ -1,12 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import {
-  InstanceOptions,
-  IOContext,
-  ExternalClient,
-  PRODUCTION,
-} from '@vtex/api'
+import type { InstanceOptions, IOContext } from '@vtex/api'
+import { ExternalClient, PRODUCTION } from '@vtex/api'
 
-export default class Relevanc extends ExternalClient {
+export default class RelevancClient extends ExternalClient {
   constructor(context: IOContext, options?: InstanceOptions) {
     super('https://ads.peps.relevanc.io', context, options)
   }
