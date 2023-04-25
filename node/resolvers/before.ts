@@ -70,7 +70,5 @@ export async function before(
     return dynamicRulesMapper(offer, settings)
   })
 
-  await ctx.clients.offersMap.updateOffersMap(offersMap)
-
-  return { ...args, dynamicRules }
+  return { ...args, dynamicRules, customPluginInfo: JSON.stringify(offersMap) }
 }

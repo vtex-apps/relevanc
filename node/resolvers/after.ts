@@ -7,7 +7,17 @@ export async function after(
 ): Promise<ProductSearchResult> {
   const { products } = args.searchResult
 
-  let offersMap = await ctx.clients.offersMap.getOffersMap()
+  let offersMap = null
+
+  try {
+    const {customPluginInfo} = args
+    
+    if (customPluginInfo) {
+      offersMap = JSON.parse(customPluginInfo)
+    }
+  } catch(e) {
+    return errorHandler('Problem parsing the customPluginInfo', ctx)
+  }
 
   if (!offersMap) {
     return errorHandler('Offers map not found', ctx)
@@ -16,10 +26,6 @@ export async function after(
   for (const product of products) {
     addTrackingTag(offersMap, product)
   }
-
-  // Clear offersMap from memory and VBase after each search
-  offersMap = null
-  await ctx.clients.offersMap.clearOffersMap()
 
   return args.searchResult
 }
