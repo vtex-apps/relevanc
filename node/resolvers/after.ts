@@ -10,14 +10,17 @@ export async function after(
   let offersMap = null
 
   try {
-    const {customPluginInfo} = args
-    
+    const { customPluginInfo } = args
+
     if (customPluginInfo) {
       offersMap = JSON.parse(customPluginInfo)
     }
-  } catch(e) {
+  } catch {
     return errorHandler('Problem parsing the customPluginInfo', ctx)
   }
+
+  // eslint-disable-next-line no-console
+  console.log('OffersMap', offersMap)
 
   if (!offersMap) {
     return errorHandler('Offers map not found', ctx)

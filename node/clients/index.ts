@@ -3,7 +3,7 @@ import { IOClients } from '@vtex/api'
 
 import CatalogClient from './catalog'
 import CategoriesMapClient from './categoriesMap'
-import RelevancClient from './relevanC'
+import RelevancClient from './relevanc'
 import OffersMapClient from './offersMap'
 
 const MEDIUM_TIMEOUT_MS = 2 * 1000
