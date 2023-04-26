@@ -36,8 +36,14 @@
         "title": "Product property",
         "type": "string",
         "default": "productId",
-        "enum": ["productId", "skuId"],
-        "enumNames": ["Product ID", "SKU ID"]
+        "enum": [
+          "productId",
+          "skuId"
+        ],
+        "enumNames": [
+          "Product ID",
+          "SKU ID"
+        ]
       },
       "maxOffersToDisplay": {
         "title": "Max number of offers",

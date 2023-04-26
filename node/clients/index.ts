@@ -4,7 +4,6 @@ import { IOClients } from '@vtex/api'
 import CatalogClient from './catalog'
 import CategoriesMapClient from './categoriesMap'
 import RelevancClient from './relevanc'
-import OffersMapClient from './offersMap'
 
 const MEDIUM_TIMEOUT_MS = 2 * 1000
 
@@ -19,10 +18,6 @@ export class Clients extends IOClients {
 
   public get categoriesMap() {
     return this.getOrSet('categoriesMap', CategoriesMapClient)
-  }
-
-  public get offersMap() {
-    return this.getOrSet('offersMap', OffersMapClient)
   }
 }
 
