@@ -60,12 +60,13 @@ export async function before(
     return errorHandler('AdServer request failed', ctx)
   }
 
-  const offersMap = {} as Relevanc.SponsoredOffersMap
-
-  offersMap.boostType = settings.boostType
+  const offersMap: Relevanc.SponsoredOffersMap = {
+    boostType: settings.boostType,
+    offers: {},
+  }
 
   const dynamicRules = offers.map((offer) => {
-    offersMap[offer.offerId] = offer
+    offersMap.offers[offer.offerId] = offer
 
     return dynamicRulesMapper(offer, settings)
   })

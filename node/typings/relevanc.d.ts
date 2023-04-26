@@ -47,6 +47,8 @@ declare namespace Relevanc {
 
   interface SponsoredOffersMap {
     boostType: BoostType
-    [offerId: string]: SponsoredOffer
+    offers: {
+      [offerId: string]: SponsoredOffer
+    }
   }
 }

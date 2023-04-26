@@ -7,7 +7,7 @@ export async function after(
 ): Promise<ProductSearchResult> {
   const { products } = args.searchResult
 
-  let offersMap = null
+  let offersMap: Relevanc.SponsoredOffersMap | null = null
 
   try {
     const { customPluginInfo } = args
@@ -19,10 +19,7 @@ export async function after(
     return errorHandler('Problem parsing the customPluginInfo', ctx)
   }
 
-  // eslint-disable-next-line no-console
-  console.log('OffersMap', offersMap)
-
-  if (!offersMap) {
+  if (!offersMap || !Object.keys(offersMap.offers).length) {
     return errorHandler('Offers map not found', ctx)
   }
 
