@@ -53,6 +53,7 @@ declare global {
     selectedFacets?: SelectedFacet[]
     dynamicRules?: DynamicRule[]
     searchState?: string
+    customPluginInfo?: string
   }
 
   type Category = {
@@ -337,6 +338,6 @@ declare global {
   }
 
   type AfterArgs = {
-    args: { searchResult: ProductSearchResult; params: SearchParams }
+    args: { searchResult: ProductSearchResult; params: SearchParams, customPluginInfo: string }
   }
 }

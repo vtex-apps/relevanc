@@ -8,8 +8,6 @@ import {
 } from '../utils/resolvers'
 import { dynamicRulesMapper } from '../utils'
 
-export const offersMap = {} as Relevanc.SponsoredOffersMap
-
 export async function before(
   _: unknown,
   args: SearchParams,
@@ -62,13 +60,16 @@ export async function before(
     return errorHandler('AdServer request failed', ctx)
   }
 
-  offersMap.boostType = settings.boostType
+  const offersMap: Relevanc.SponsoredOffersMap = {
+    boostType: settings.boostType,
+    offers: {},
+  }
 
   const dynamicRules = offers.map((offer) => {
-    offersMap[offer.offerId] = offer
+    offersMap.offers[offer.offerId] = offer
 
     return dynamicRulesMapper(offer, settings)
   })
 
-  return { ...args, dynamicRules }
+  return { ...args, dynamicRules, customPluginInfo: JSON.stringify(offersMap) }
 }

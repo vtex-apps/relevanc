@@ -4,7 +4,6 @@ export const PAGE_TYPE = {
 }
 
 export const CATEGORIES_MAP = 'categories-map'
-export const OFFERS_MAP = 'offers-map'
 export const ACCOUNT_BASE_URL = 'https://portal.vtexcommercestable.com.br/'
 export const BUCKET = 'relevanc'
 
