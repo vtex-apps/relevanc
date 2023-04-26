@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "relevanc",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "title": "RelevanC",
   "description": "RelevanC Intelligent Search API middleware resolver.",
   "builders": {
@@ -36,14 +36,8 @@
         "title": "Product property",
         "type": "string",
         "default": "productId",
-        "enum": [
-          "productId",
-          "skuId"
-        ],
-        "enumNames": [
-          "Product ID",
-          "SKU ID"
-        ]
+        "enum": ["productId", "skuId"],
+        "enumNames": ["Product ID", "SKU ID"]
       },
       "maxOffersToDisplay": {
         "title": "Max number of offers",
