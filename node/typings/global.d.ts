@@ -338,6 +338,10 @@ declare global {
   }
 
   type AfterArgs = {
-    args: { searchResult: ProductSearchResult; params: SearchParams, customPluginInfo: string }
+    args: {
+      searchResult: ProductSearchResult
+      params: SearchParams
+      customPluginInfo: string
+    }
   }
 }

@@ -15,12 +15,12 @@ export async function after(
     if (customPluginInfo) {
       offersMap = JSON.parse(customPluginInfo)
     }
-  } catch {
-    return errorHandler('Problem parsing the customPluginInfo', ctx)
-  }
 
-  if (!offersMap || !Object.keys(offersMap.offers).length) {
-    return errorHandler('Offers map not found', ctx)
+    if (!offersMap || !Object.keys(offersMap.offers).length) {
+      throw new Error('Offers map not found')
+    }
+  } catch (error) {
+    return errorHandler(error.message, ctx, error)
   }
 
   for (const product of products) {
