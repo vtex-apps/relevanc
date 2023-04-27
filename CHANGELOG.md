@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Implement error logging on console instead of OpenSearch while the app is in development.
+
 ## [1.0.4] - 2023-04-26
 
 ### Changed

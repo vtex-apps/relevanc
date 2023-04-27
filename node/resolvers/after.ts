@@ -5,22 +5,17 @@ export async function after(
   { args }: AfterArgs,
   ctx: Context
 ): Promise<ProductSearchResult> {
-  const { products } = args.searchResult
-
-  let offersMap: Relevanc.SponsoredOffersMap | null = null
-
-  try {
-    const { customPluginInfo } = args
-
-    if (customPluginInfo) {
-      offersMap = JSON.parse(customPluginInfo)
-    }
-  } catch {
-    return errorHandler('Problem parsing the customPluginInfo', ctx)
+  if (!args.customPluginInfo) {
+    return args.searchResult
   }
 
-  if (!offersMap || !Object.keys(offersMap.offers).length) {
-    return errorHandler('Offers map not found', ctx)
+  const { products } = args.searchResult
+  const offersMap: Relevanc.SponsoredOffersMap = JSON.parse(
+    args.customPluginInfo
+  )
+
+  if (!Object.keys(offersMap.offers).length) {
+    return errorHandler('No offers not found', ctx)
   }
 
   for (const product of products) {

@@ -57,7 +57,7 @@ export async function before(
   }
 
   if (!offers) {
-    return errorHandler('AdServer request failed', ctx)
+    return { ...args }
   }
 
   const offersMap: Relevanc.SponsoredOffersMap = {
