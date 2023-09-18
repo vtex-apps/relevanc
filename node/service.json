@@ -1,8 +1,8 @@
 {
   "stack": "nodejs",
   "memory": 512,
-  "minReplicas": 3,
-  "workers": 1,
+  "minReplicas": 5,
+  "workers": 10,
   "routes": {
     "categoriesMap": {
       "path": "/_v/relevanc/categories-map",

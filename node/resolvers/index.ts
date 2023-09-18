@@ -1,9 +1,7 @@
-import { after } from './after'
-import { before } from './before'
+import { sponsoredProducts } from "./sponsoredProducts";
 
 export const resolvers = {
   Query: {
-    before,
-    after,
+    sponsoredProducts,
   },
-}
+};

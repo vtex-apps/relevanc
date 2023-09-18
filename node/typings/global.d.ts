@@ -37,6 +37,13 @@ declare global {
     value: string
   }
 
+  type SponsoredProduct = {
+    productId: string
+    rule: {
+      id: string
+    }
+  }
+
   type SearchParams = {
     query?: string
     page?: string
