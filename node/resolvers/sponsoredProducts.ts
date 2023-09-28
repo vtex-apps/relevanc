@@ -11,7 +11,7 @@ export async function sponsoredProducts(
   _: unknown,
   args: SearchParams,
   ctx: Context
-): Promise<SponsoredProduct[]> {
+): Promise<any> { // TODO: appropiate type return
   if (!validateArgs(args)) {
     return errorHandler("Invalid search params", ctx);
   }
@@ -59,8 +59,22 @@ export async function sponsoredProducts(
     return [];
   }
 
-  return offers.map((offer) => ({
+  const sponsoredProducts = offers.map((offer) => ({
     productId: offer.productId,
     rule: { id: `dynamic:${offer.offerId}-${offer.tag}` },
-  }));
+      "campaignId": "test",
+      "adId": "asdasda",
+      "actionCost": 0.0
+  }))
+
+  const toReturn = {
+    sponsoredProducts,
+    adRequestId: "l2lksfsdf",
+    adResponseId: "2432423s"
+  }
+
+  console.log(JSON.stringify(toReturn));
+  
+
+  return toReturn;
 }
