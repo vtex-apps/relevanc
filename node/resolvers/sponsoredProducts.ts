@@ -62,9 +62,9 @@ export async function sponsoredProducts(
   const sponsoredProducts = offers.map((offer) => ({
     productId: offer.productId,
     rule: { id: `dynamic:${offer.offerId}-${offer.tag}` },
-      "campaignId": "test",
-      "adId": "asdasda",
-      "actionCost": 0.0
+      campaignId: "test",
+      adId: "AdIdTest",
+      actionCost: 0.0
   }))
 
   const toReturn = {
@@ -72,8 +72,6 @@ export async function sponsoredProducts(
     adRequestId: "l2lksfsdf",
     adResponseId: "2432423s"
   }
-
-  console.log(JSON.stringify(toReturn));
   
 
   return toReturn;
