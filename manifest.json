@@ -1,15 +1,15 @@
 {
-  "vendor": "vtex",
+  "vendor": "backpartnerco",
   "name": "relevanc",
-  "version": "1.0.5",
+  "version": "2.1.0-beta.1",
   "title": "RelevanC",
-  "description": "RelevanC Intelligent Search API middleware resolver.",
+  "description": "RelevanC Intelligent Search API Integration",
   "builders": {
     "docs": "0.x",
     "node": "6.x"
   },
   "dependencies": {
-    "vtex.is-api-middleware-graphql": "0.x"
+    "vtex.adserver-graphql": "0.x"
   },
   "policies": [
     {
@@ -56,6 +56,12 @@
         "description": "By default, only products that are part of the search results are promoted.\n Check to add all products returned by the AdServer."
       }
     }
+  },
+  "billingOptions": {
+    "free": true,
+    "availableCountries": [
+      "*"
+    ]
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
