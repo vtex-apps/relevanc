@@ -1,5 +1,5 @@
 {
-  "vendor": "exito",
+  "vendor": "backpartnerco",
   "name": "relevanc",
   "version": "2.1.0-beta.1",
   "title": "RelevanC",
@@ -9,7 +9,7 @@
     "node": "6.x"
   },
   "dependencies": {
-    "vtex.adserver-graphql": "1.x"
+    "vtex.adserver-graphql": "0.x"
   },
   "policies": [
     {
